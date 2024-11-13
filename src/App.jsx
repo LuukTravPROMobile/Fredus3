@@ -3,7 +3,7 @@ import axios from "axios";
 import Spinner from "./Spinner";
 import Header from "./Header";
 import Card from "./Card";
-import AddressMap from "components/AddressMap"; // Import de AddressMap component
+import AddressMap from "./components/AddressMap"; // Zorg ervoor dat het pad correct is
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class App extends Component {
       hotels: [],
       loading: true,
       error: null,
+      selectedHotel: null, // Voeg selectedHotel toe aan de state
     };
   }
 
@@ -38,8 +39,13 @@ class App extends Component {
     }
   }
 
+  // Functie om een hotel te selecteren
+  selectHotel = (hotel) => {
+    this.setState({ selectedHotel: hotel });
+  };
+
   render() {
-    const { hotels, loading, error } = this.state;
+    const { hotels, loading, error, selectedHotel } = this.state;
 
     if (loading) {
       return (
@@ -57,8 +63,8 @@ class App extends Component {
       <div className="app">
         <Header />
 
-        {/* Voeg de AddressMap component toe en geef de hotels door */}
-        <AddressMap hotels={hotels} />
+        {/* Geef selectedHotel en selectHotel functie door aan AddressMap */}
+        <AddressMap hotels={hotels} selectedHotel={selectedHotel} />
 
         <div className="card-container">
           {hotels.map((hotel, index) => (
@@ -71,6 +77,7 @@ class App extends Component {
               web_url={hotel.web_url}
               phone={hotel.phone}
               number={String(index + 1)}
+              onClick={() => this.selectHotel(hotel)} // Selecteer hotel bij klik op kaart
             />
           ))}
         </div>
@@ -80,4 +87,3 @@ class App extends Component {
 }
 
 export default App;
-
