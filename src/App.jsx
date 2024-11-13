@@ -1,89 +1,64 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Spinner from "./Spinner";
-import Header from "./Header";
-import Card from "./Card";
-import AddressMap from "./components/AddressMap"; // Zorg ervoor dat het pad correct is
+import Spinner from "./components/Spinner";
+import Header from "./components/Header";
+import Card from "./components/Card";
+import AddressMap from "./components/AddressMap";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hotels: [],
-      loading: true,
-      error: null,
-      selectedHotel: null, // Voeg selectedHotel toe aan de state
+const App = () => {
+  const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedHotel, setSelectedHotel] = useState(null);
+
+  // Fetch data from the API when the component mounts
+  useEffect(() => {
+    const getList = async () => {
+      try {
+        const response = await axios.get(
+          "https://travpro.yourworldapps.nl/API/app/v2/listings.php?app=1435&lat1=36.5098445064823&lat2=35.74337885497288&lon1=-114.83208606646728&lon2=-115.48191020892334?category=&query="
+        );
+        setHotels(response.data); // Set hotels state
+      } catch (err) {
+        setError(err.message); // Set error state
+      } finally {
+        setLoading(false); // Set loading to false after data fetch
+      }
     };
-  }
 
-  // Haal de data op van de API
-  componentDidMount() {
-    this.getList();
-  }
+    getList();
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
 
-  // Functie om de data van de API op te halen
-  async getList() {
-    try {
-      const response = await axios.get(
-        "https://travpro.yourworldapps.nl/API/app/v2/listings.php?app=1435&lat1=36.5098445064823&lat2=35.74337885497288&lon1=-114.83208606646728&lon2=-115.48191020892334?category=&query="
-      );
-      this.setState({
-        hotels: response.data, // de API geeft een lijst met hotels terug
-        loading: false,
-      });
-    } catch (error) {
-      this.setState({
-        loading: false,
-        error: error.message,
-      });
-    }
-  }
+  // Show spinner while loading
+  if (loading) return <Spinner />;
 
-  // Functie om een hotel te selecteren
-  selectHotel = (hotel) => {
-    this.setState({ selectedHotel: hotel });
-  };
+  // Show error message if there is an error
+  if (error) return <div>Error: {error}</div>;
 
-  render() {
-    const { hotels, loading, error, selectedHotel } = this.state;
+  return (
+    <div className="app">
+      <Header />
 
-    if (loading) {
-      return (
-        <div>
-          <Spinner />
-        </div>
-      );
-    }
+      {/* Pass selectedHotel and setSelectedHotel to AddressMap */}
+      <AddressMap hotels={hotels} selectedHotel={selectedHotel} />
 
-    if (error) {
-      return <div>Error: {error}</div>;
-    }
-
-    return (
-      <div className="app">
-        <Header />
-
-        {/* Geef selectedHotel en selectHotel functie door aan AddressMap */}
-        <AddressMap hotels={hotels} selectedHotel={selectedHotel} />
-
-        <div className="card-container">
-          {hotels.map((hotel, index) => (
-            <Card
-              key={index}
-              bedrijfsnaam={hotel.company}
-              city={hotel.city}
-              state={hotel.state}
-              addr1={hotel.addr1}
-              web_url={hotel.web_url}
-              phone={hotel.phone}
-              number={String(index + 1)}
-              onClick={() => this.selectHotel(hotel)} // Selecteer hotel bij klik op kaart
-            />
-          ))}
-        </div>
+      <div className="card-container">
+        {hotels.map((hotel, index) => (
+          <Card
+            key={index}
+            bedrijfsnaam={hotel.company}
+            city={hotel.city}
+            state={hotel.state}
+            addr1={hotel.addr1}
+            web_url={hotel.web_url}
+            phone={hotel.phone}
+            number={String(index + 1)}
+            onClick={() => setSelectedHotel(hotel)} // Handle hotel selection
+          />
+        ))}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;
