@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "./components/Spinner";
 import Header from "./components/Header";
-import Card from "./components/Card";
 import AddressMap from "./components/AddressMap";
+
+// API URL as a constant to make the code cleaner and easier to maintain
+const API_URL = "https://travpro.yourworldapps.nl/API/app/v2/listings.php?app=1435&lat1=36.5098445064823&lat2=35.74337885497288&lon1=-114.83208606646728&lon2=-115.48191020892334?category=&query=";
 
 const App = () => {
   const [hotels, setHotels] = useState([]);
@@ -15,14 +17,12 @@ const App = () => {
   useEffect(() => {
     const getList = async () => {
       try {
-        const response = await axios.get(
-          "https://travpro.yourworldapps.nl/API/app/v2/listings.php?app=1435&lat1=36.5098445064823&lat2=35.74337885497288&lon1=-114.83208606646728&lon2=-115.48191020892334?category=&query="
-        );
-        setHotels(response.data); // Set hotels state
+        const response = await axios.get(API_URL);
+        setHotels(response.data);
       } catch (err) {
-        setError(err.message); // Set error state
+        setError(err.message);
       } finally {
-        setLoading(false); // Set loading to false after data fetch
+        setLoading(false);
       }
     };
 
@@ -31,17 +31,13 @@ const App = () => {
 
   // Show spinner while loading
   if (loading) return <Spinner />;
-
   // Show error message if there is an error
   if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="app">
       <Header />
-
-      {/* Pass selectedHotel and setSelectedHotel to AddressMap */}
       <AddressMap hotels={hotels} selectedHotel={selectedHotel} />
-
       <div className="card-container">
         {hotels.map((hotel, index) => (
           <Card
@@ -61,4 +57,16 @@ const App = () => {
   );
 };
 
+// The Card component that displays hotel information
+const Card = ({ bedrijfsnaam, city, state, addr1, web_url, phone, number, onClick }) => (
+  <div className="card" onClick={onClick}>
+    <h3>{`${number}. ${bedrijfsnaam}`}</h3>
+    <p>{city}, {state}</p>
+    <p>{addr1}</p>
+    {web_url && <a href={web_url} target="_blank" rel="noopener noreferrer">Visit Website</a>}
+    {phone && <p>Phone: {phone}</p>}
+  </div>
+);
+
 export default App;
+
