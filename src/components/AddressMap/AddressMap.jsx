@@ -40,6 +40,7 @@ const AddressMap = ({ hotels }) => {
               key={index}
               position={position} // Use position directly
               label={String(index + 1)}
+              title={hotel.company}
             />
           );
         })}
