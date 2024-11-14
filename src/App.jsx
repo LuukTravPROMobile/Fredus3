@@ -27,7 +27,6 @@ class App extends Component {
       const response = await axios.get(
         "https://travpro.yourworldapps.nl/API/app/v2/listings.php?app=1435&lat1=36.5098445064823&lat2=35.74337885497288&lon1=-114.83208606646728&lon2=-115.48191020892334?category=&query="
       ); // Replace with your API endpoint
-      console.log("response>", response);
 
       this.setState({
         hotels: response.data, // the API returns an array of listings
@@ -43,7 +42,6 @@ class App extends Component {
 
   render() {
     const { hotels, loading, error } = this.state;
-    console.log("data", hotels);
 
     // Return loading message if data is still being fetched
     if (loading) {
@@ -69,7 +67,7 @@ class App extends Component {
 
         {/* Cards Section */}
         <div className="card-container">
-          {hotels.map((hotel, index, marker) => {
+          {hotels.map((hotel, index) => {
             return (
               <Card
                 key={index}
