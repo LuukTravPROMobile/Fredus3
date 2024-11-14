@@ -51,4 +51,6 @@ const AddressMap = ({ hotels }) => {
   );
 };
 
+
+
 export default AddressMap;
