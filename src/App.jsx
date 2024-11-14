@@ -85,30 +85,8 @@ class App extends Component {
           })}
         </div>
       </div>
-    </div>
-  );
-};
-
-const IframeCode = () => {
-  return (
-    <div>
-      <h1>My Google Map</h1>
-      {/* Pass the googlePointer and googleZoom props */}
-      <GoogleMap googlePointer="New York, NY" googleZoom="10" />
-    </div>
-  );
-};
-
-
-// The Card component that displays hotel information
-const Card = ({ bedrijfsnaam, city, state, addr1, web_url, phone, number, onClick }) => (
-  <div className="card" onClick={onClick}>
-    <h3>{`${number}. ${bedrijfsnaam}`}</h3>
-    <p>{city}, {state}</p>
-    <p>{addr1}</p>
-    {web_url && <a href={web_url} target="_blank" rel="noopener noreferrer">Visit Website</a>}
-    {phone && <p>Phone: {phone}</p>}
-  </div>
-);
+    );
+  }
+}
 
 export default App;
