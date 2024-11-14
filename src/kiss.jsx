@@ -3,11 +3,8 @@ import React from "react";
 const Card = ({ text, buttonText }) => {
   return (
     <div className="card">
-      <p>{text}</p>
+      <p>{history}</p>
       <button>{buttonText}</button>
     </div>
   );
 };
-
-export default Card;
-
