@@ -1,5 +1,6 @@
 import { GoogleMap, MarkerF, LoadScript } from "@react-google-maps/api";
 import React from "react";
+import Card from "../card/Card";
 
 const mapContainerStyle = {
   width: "700px",
@@ -41,6 +42,7 @@ const AddressMap = ({ hotels }) => {
               position={position} // Use position directly
               label={String(index + 1)}
               title={hotel.company}
+              Card={hotels}
             />
           );
         })}
