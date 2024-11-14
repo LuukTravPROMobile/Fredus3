@@ -20,6 +20,8 @@ const createPositionMarker = (lat, lng) => {
 };
 
 const AddressMap = ({ hotels }) => {
+  console.log(hotels);
+
   return (
     <LoadScript googleMapsApiKey="AIzaSyBpfyrBMTrgHH3YnaGHxfjEN_w7OXBJoqc">
       <GoogleMap
@@ -33,7 +35,6 @@ const AddressMap = ({ hotels }) => {
             hotel.latitude,
             hotel.longitude
           );
-          console.log(position);
           return (
             <Marker
               key={index}
