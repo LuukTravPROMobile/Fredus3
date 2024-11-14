@@ -1,4 +1,4 @@
-import { GoogleMap, Marker, LoadScript } from "@react-google-maps/api";
+import { GoogleMap, MarkerF, LoadScript } from "@react-google-maps/api";
 import React from "react";
 
 const mapContainerStyle = {
@@ -35,7 +35,7 @@ const AddressMap = ({ hotels }) => {
           );
           console.log(position);
           return (
-            <Marker
+            <MarkerF
               key={index}
               position={position} // Use position directly
               label={String(index + 1)}
