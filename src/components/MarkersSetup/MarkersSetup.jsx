@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import GoogleMapReact from "google-map-react";
 import MapMarker from "./MapMarker";
-
+import Card from './card';
 const defaultCenter = {
   lat: 36.14896463588831, // default latitude
   lng: -115.17517089843751, // default longitude
