@@ -12,7 +12,7 @@ const MapComponent = ({ locations, hoveredCardId, center = defaultCenter, zoom =
   <div style={{ width: "100%", height: "100%" }}>
     <GoogleMapReact
       bootstrapURLKeys={{
-        key: "AIzaSyBpfyrBMTrgHH3YnaGHxfjEN_w7OXBJoqc", // Your API key
+        key: "AIzaSyBpfyrBMTrgHH3YnaGHxfjEN_w7OXBJoqc", 
         v: "3.31",
       }}
       defaultCenter={center}
