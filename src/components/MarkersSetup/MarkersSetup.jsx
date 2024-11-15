@@ -3,28 +3,28 @@ import PropTypes from "prop-types";
 import GoogleMapReact from "google-map-react";
 import MapMarker from "./MapMarker";
 
-const createMapOptions = () => ({
-  fullscreenControl: false,
-  mapTypeControl: false,
-  panControl: false,
-  streetViewControl: false,
-  zoomControl: true,
-  gestureHandling: "greedy",
-});
-
 const defaultCenter = {
   lat: 36.14896463588831, // default latitude
   lng: -115.17517089843751, // default longitude
-}) => (
+};
+
+const MapComponent = ({ locations, hoveredCardId, center = defaultCenter, zoom = 10 }) => (
   <div style={{ width: "100%", height: "100%" }}>
     <GoogleMapReact
       bootstrapURLKeys={{
-        key: "AIzaSyBpfyrBMTrgHH3YnaGHxfjEN_w7OXBJoqc",
+        key: "AIzaSyBpfyrBMTrgHH3YnaGHxfjEN_w7OXBJoqc", // Your API key
         v: "3.31",
       }}
       defaultCenter={center}
       defaultZoom={zoom}
-      options={createMapOptions}
+      options={{
+        fullscreenControl: false,
+        mapTypeControl: false,
+        panControl: false,
+        streetViewControl: false,
+        zoomControl: true,
+        gestureHandling: "greedy",
+      }}
     >
       {locations.map((location) => (
         <MapMarker
@@ -40,7 +40,7 @@ const defaultCenter = {
   </div>
 );
 
-ConsolidatedMap.propTypes = {
+MapComponent.propTypes = {
   locations: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -58,4 +58,4 @@ ConsolidatedMap.propTypes = {
   zoom: PropTypes.number,
 };
 
-export default ConsolidatedMap;
+export default MapComponent;
