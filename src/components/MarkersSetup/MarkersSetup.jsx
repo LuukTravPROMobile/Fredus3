@@ -44,22 +44,4 @@ const MapComponent = ({
   </div>
 );
 
-MapComponent.propTypes = {
-  locations: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      lat: PropTypes.number.isRequired,
-      lng: PropTypes.number.isRequired,
-      location_name: PropTypes.string,
-      pageid: PropTypes.string,
-    })
-  ).isRequired,
-  hoveredCardId: PropTypes.string,
-  center: PropTypes.shape({
-    lat: PropTypes.number,
-    lng: PropTypes.number,
-  }),
-  zoom: PropTypes.number,
-};
-
 export default MapComponent;
