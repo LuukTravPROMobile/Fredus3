@@ -1,46 +1,42 @@
 import React from "react";
 import PropTypes from "prop-types";
-import GoogleMapReact from "google-map-react";
-import MapMarker from "./MapMarker";
-const defaultCenter = {
-  lat: 36.14896463588831, // default latitude
-  lng: -115.17517089843751, // default longitude
-};
 
-const MapComponent = ({
-  locations,
-  hoveredCardId,
-  center = defaultCenter,
-  zoom = 10,
-}) => (
-  <div style={{ width: "100%", height: "100%" }}>
-    <GoogleMapReact
-      bootstrapURLKeys={{
-        key: "AIzaSyBpfyrBMTrgHH3YnaGHxfjEN_w7OXBJoqc",
-      }}
-      defaultCenter={center}
-      defaultZoom={zoom}
-      options={{
-        fullscreenControl: false,
-        mapTypeControl: false,
-        panControl: false,
-        streetViewControl: false,
-        zoomControl: true,
-        gestureHandling: "greedy",
-      }}
-    >
-      {locations.map((location) => (
-        <MapMarker
-          key={location.id}
-          lat={location.lat}
-          lng={location.lng}
-          name={location.location_name}
-          pageid={location.pageid}
-          hoveredCardId={hoveredCardId}
-        />
-      ))}
-    </GoogleMapReact>
+const MapMarker = ({ name, hoveredCardId, pageid }) => (
+  <div
+    style={{
+      color: hoveredCardId === pageid ? "red" : "blue",
+      cursor: "pointer",
+    }}
+    title={name}
+  >
+    📍
   </div>
 );
 
-export default MapComponent;
+MapMarker.propTypes = {
+  name: PropTypes.string.isRequired,
+  hoveredCardId: PropTypes.string,
+  pageid: PropTypes.string.isRequired,
+};
+
+MapComponent.propTypes = {
+  locations: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      lat: PropTypes.number.isRequired,
+      lng: PropTypes.number.isRequired,
+      location_name: PropTypes.string.isRequired,
+      pageid: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  hoveredCardId: PropTypes.string,
+  center: PropTypes.shape({
+    lat: PropTypes.number,
+    lng: PropTypes.number,
+  }),
+  zoom: PropTypes.number,
+};
+
+
+export default MapMarker;
+
