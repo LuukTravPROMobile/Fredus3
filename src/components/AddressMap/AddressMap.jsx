@@ -19,8 +19,8 @@ const createPositionMarker = (lat, lng) => {
   };
 };
 
-const AddressMap = ({ hotels }) => {
-  console.log(hotels);
+const AddressMap = ({ hotels, index }) => {
+  console.log(hotels, index);
 
   return (
     <LoadScript googleMapsApiKey="AIzaSyBpfyrBMTrgHH3YnaGHxfjEN_w7OXBJoqc">
