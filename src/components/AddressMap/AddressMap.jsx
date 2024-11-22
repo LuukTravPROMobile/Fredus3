@@ -52,4 +52,4 @@ const AddressMap = ({ hotels, index }) => {
 
 
 
-export default AddressMap;
+export default AddressMap; 
