@@ -5,8 +5,11 @@ import Header from "./components/PopUpHeader/PopUpHeader";
 import "./App.css";
 import AddressMap from "./components/AddressMap/AddressMap";
 import Spinner from "./components/Spinner/Spinner";
+import { BasicChat } from "@ebereplenty/chatbot";
+
 
 class App extends Component {
+ 
   constructor(props) {
     super(props);
     this.state = {
