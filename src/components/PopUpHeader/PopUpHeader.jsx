@@ -74,7 +74,8 @@ const PopUpHeader = () => {
                   </a>
                   <a
                     href="https://www.travpromobile.com/about/"
-                    className="About-btn"gggggg
+                    className="About-btn"
+                    gggggg
                     style={{ margin: "10px", padding: "10px" }}
                   >
                     About
@@ -87,13 +88,12 @@ const PopUpHeader = () => {
                     Training
                   </a>
                   <a
-                  href="./AI/AiChat"
-                  className="Training-btn"
-                  style={{ margin: "10px", padding: "10px" }}
+                    href="./AI/AiChat"
+                    className="Training-btn"
+                    style={{ margin: "10px", padding: "10px" }}
                   >
-                  HelpBot Fredus
+                    HelpBot Fredus
                   </a>
-
                 </div>
               </button>
             </div>
