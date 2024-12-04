@@ -6,9 +6,7 @@ import "./App.css";
 import AddressMap from "./components/AddressMap/AddressMap";
 import Spinner from "./components/Spinner/Spinner";
 
-
 class App extends Component {
- 
   constructor(props) {
     super(props);
     this.state = {

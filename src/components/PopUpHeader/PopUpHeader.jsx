@@ -75,7 +75,6 @@ const PopUpHeader = () => {
                   <a
                     href="https://www.travpromobile.com/about/"
                     className="About-btn"
-                    gggggg
                     style={{ margin: "10px", padding: "10px" }}
                   >
                     About

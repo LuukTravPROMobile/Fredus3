@@ -1,5 +1,6 @@
 import { GoogleMap, MarkerF, LoadScript } from "@react-google-maps/api";
 import React from "react";
+import Card from "../card/Card";
 
 const mapContainerStyle = {
   width: "700px",
@@ -17,6 +18,19 @@ const createPositionMarker = (lat, lng) => {
     lat: Number(lat),
     lng: Number(lng),
   };
+};
+
+const PopupCard = ({ index, card }) => {
+  const handleClick = () => {
+    console.log(index, card);
+  };
+
+  return (
+    <div onClick={handleClick} style={{ cursor: "pointer" }}>
+      <p>Card {index}</p>
+      <p>{card.title}</p>
+    </div>
+  );
 };
 
 const AddressMap = ({ hotels, index }) => {
@@ -50,6 +64,4 @@ const AddressMap = ({ hotels, index }) => {
   );
 };
 
-
-
-export default AddressMap; 
+export default AddressMap;
