@@ -33,6 +33,8 @@ const PopupCard = ({ index, card }) => {
   );
 };
 
+
+
 const AddressMap = ({ hotels, index }) => {
   console.log(hotels, index);
 
