@@ -20,7 +20,7 @@ const createPositionMarker = (lat, lng) => {
   };
 };
 
-const PopupCard = ({ index, card }) => {
+const PopupCard = ({ index, card, Marker }) => {
   const handleClick = () => {
     console.log(index, card);
   };
