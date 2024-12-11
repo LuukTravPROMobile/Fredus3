@@ -26,7 +26,6 @@ const PopUpHeader = () => {
             backgroundColor: "#00072d",
             padding: "20px",
             border: "2px solid #00072D",
-            borderRadius: "15px",
             zIndex: 1001,
           }}
         >
