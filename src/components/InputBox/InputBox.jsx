@@ -11,7 +11,7 @@ const ChatbotFredus = () => {
         `You: ${input}`,
         `FredusBot: You said "${input}"`,
       ]);
-      <Click>("")</Click>
+      <Click>("")</Click>;
     }
   };
 
